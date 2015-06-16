@@ -14,10 +14,11 @@ require 'pry'
 
 
 class MerchantRepository
-  attr_reader :merchants
+  attr_reader :merchants, :sales_engine
 
-  def initialize
+  def initialize(sales_engine)
     @merchants = []
+    @sales_engine = sales_engine
   end
 
   def load
@@ -26,7 +27,7 @@ class MerchantRepository
                                  row["name"],
                                  row["created_at"],
                                  row["updated_at"],
-                                  )
+                                  self)
     end
   end
 
