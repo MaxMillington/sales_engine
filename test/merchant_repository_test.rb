@@ -1,41 +1,36 @@
 require 'minitest/pride'
 require 'minitest/autorun'
 require_relative '../lib/merchant_repository'
+require_relative '../lib/sales_engine'
 
 class MerchantRepositoryTest < Minitest::Test
-  def test_it_loads_merchants
-    skip
-    merc = MerchantRepository.new
-    merc.load
-    assert_equal "blah ", merc.merchants
-  end
 
-  def test_all_returns_an_array_of_all_merchants
-    skip
-    merc = MerchantRepository.new
+  def test_all_returns_an_array_of_all_merchant
+    se = SalesEngine.new
+    merc = se.merchant_repository
     merc.load
-    assert merc.all
+    assert_equal Array, merc.all.class
   end
 
   def test_merchant_person_has_a_name
-    merc = MerchantRepository.new
+    se = SalesEngine.new
+    merc = se.merchant_repository
     merc.load
     name = merc.merchants.first.name
-
     assert_equal "Schroeder-Jerde", name
-
   end
 
   def test_random_returns_one_random_merchant_obj
-    skip
-    merc = MerchantRepository.new
+    se = SalesEngine.new
+    merc = se.merchant_repository
     merc.load
-    refute merc.random, merc.random
+    refute_equal merc.random, merc.random
   end
 
   def test_find_a_merchant_by_id
     skip
-    merc = MerchantRepository.new
+    se = SalesEngine.new
+    merc = se.merchant_repository
     merc.load
     assert_equal "Williamson Group", merc.find_by_id(5)
   end
