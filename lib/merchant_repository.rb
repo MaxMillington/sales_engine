@@ -27,7 +27,7 @@ class MerchantRepository
                                  row["name"],
                                  row["created_at"],
                                  row["updated_at"],
-                                  self)
+                                 self)
     end
   end
 

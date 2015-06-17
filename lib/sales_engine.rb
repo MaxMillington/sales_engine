@@ -19,7 +19,7 @@ class SalesEngine
 
 
   def initialize
-    # @item_repository = ItemRepository.new(self)
+    @item_repository = ItemRepository.new(self)
     @merchant_repository = MerchantRepository.new(self)
     @transaction_repository = TransactionRepository.new(self)
     # @invoice_repository = InvoiceRepository.new(self)
