@@ -56,7 +56,7 @@ class CSVParser
   end
 
   def self.load_customer_data(filepath)
-    CSV.read("#{filepath}/customerss.csv", headers: true)
+    CSV.read("#{filepath}/customers.csv", headers: true)
   end
 
 end
