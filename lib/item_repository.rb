@@ -1,31 +1,19 @@
 require 'csv'
 require_relative 'item'
 require 'pry'
+require_relative '../lib/sales_engine'
 
 
 class ItemRepository
   attr_reader :items, :sales_engine
 
-  def initialize(sales_engine)
-    @items = []
+  def initialize(sales_engine, data)
+    @items = data.map {|entry| Item.new(entry, self) }
     @sales_engine = sales_engine
   end
 
-  def load(filepath = './data/items.csv')
-    CSV.foreach(filepath, headers: true) do |row|
-      @items << Item.new(row["id"],
-                         row["name"],
-                         row["description"],
-                         row["unit_price"],
-                         row["merchant_id"],
-                         row["created_at"],
-                         row["updated_at"],
-                         self)
-    end
-  end
-
   def find_merchant(merchant_id)
-    sales_engine.merchant_repository.find_by_id(merchant_id)
+    sales_engine.find_merchant_by_id(merchant_id)
   end
 
   def all

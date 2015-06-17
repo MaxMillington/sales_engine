@@ -1,13 +1,12 @@
 
-
 class Merchant
   attr_reader :id, :name, :created_at, :updated_at
 
-  def initialize(id, name, created_at, updated_at, repository)
-    @id = id
-    @name = name
-    @created_at = created_at
-    @updated_at = updated_at
+  def initialize(data, repository)
+    @id = data['id']
+    @name = data['name']
+    @created_at = data['created_at']
+    @updated_at = data['updated_at']
     @repository = repository
   end
 
