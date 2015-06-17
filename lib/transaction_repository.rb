@@ -21,7 +21,7 @@ class TransactionRepository
     @sales_engine = sales_engine
   end
 
-  def load(filepath = '../data/transactions.csv')
+  def load(filepath = './data/transactions.csv')
     CSV.foreach(filepath, headers: true) do |row|
       @transactions << Transaction.new(row["id"],
                                  row["invoice_id"],

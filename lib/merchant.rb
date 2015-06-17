@@ -1,3 +1,5 @@
+
+
 class Merchant
   attr_reader :id, :name, :created_at, :updated_at
 
@@ -7,6 +9,14 @@ class Merchant
     @created_at = created_at
     @updated_at = updated_at
     @repository = repository
+  end
+
+  def items
+
+  end
+
+  def invoices
+
   end
 
 

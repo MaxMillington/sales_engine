@@ -28,7 +28,36 @@ class SalesEngine
   end
 
   def start_up
-      #not that much stuff in here
+    #fill_item_repository
+    #fill_merchant_repository
+    #fill_transaction_repository
+    #fill_invoice_repository
+    #fill_invoice_item_repository
+    #fill_customer_repository
+  end
+
+  def fill_item_repository
+    @item_repository
+  end
+
+  def fill_merchant_repository
+    @merchant_repository
+  end
+
+  def fill_transaction_repository
+    @transaction_repository
+  end
+
+  def fill_invoice_repository
+    @invoice_repository
+  end
+
+  def fill_invoice_item_repository
+    @invoice_item_repository
+  end
+
+  def fill_customer_repository
+    @customer_repository
   end
 
 end

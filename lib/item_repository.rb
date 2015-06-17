@@ -11,17 +11,21 @@ class ItemRepository
     @sales_engine = sales_engine
   end
 
-  def load(filepath = '../data/items.csv')
+  def load(filepath = './data/items.csv')
     CSV.foreach(filepath, headers: true) do |row|
       @items << Item.new(row["id"],
-                                 row["name"],
-                                 row["description"],
-                                 row["unit_price"],
-                                 row["merchant_id"],
-                                 row["created_at"],
-                                 row["updated_at"],
-                                 self)
+                         row["name"],
+                         row["description"],
+                         row["unit_price"],
+                         row["merchant_id"],
+                         row["created_at"],
+                         row["updated_at"],
+                         self)
     end
+  end
+
+  def find_merchant(merchant_id)
+    sales_engine.merchant_repository.find_by_id(merchant_id)
   end
 
   def all
@@ -83,5 +87,5 @@ class ItemRepository
   def find_all_by_updated_at(date)
     items.find_all {|item| item.updated_at == "#{date}"}
   end
-  
+
 end

@@ -21,7 +21,7 @@ class MerchantRepository
     @sales_engine = sales_engine
   end
 
-  def load(filepath = '../data/merchants.csv')
+  def load(filepath = './data/merchants.csv')
     CSV.foreach(filepath, headers: true) do |row|
       @merchants << Merchant.new(row["id"],
                                  row["name"],
