@@ -80,7 +80,7 @@ class ItemRepositoryTest < Minitest::Test
     engine = SalesEngine.new
     engine.start_up("./data/fixtures")
     items = engine.item_repository
-    assert_equal 5, items.find_all_by_merchant_id("1").count
+    assert_equal 10, items.find_all_by_merchant_id("1").count
   end
 
   def test_it_can_find_by_created_at
@@ -94,7 +94,7 @@ class ItemRepositoryTest < Minitest::Test
     engine = SalesEngine.new
     engine.start_up("./data/fixtures")
     items = engine.item_repository
-    assert_equal 5, items.find_all_by_created_at("2012-03-27 14:53:59 UTC").count
+    assert_equal 10, items.find_all_by_created_at("2012-03-27 14:53:59 UTC").count
   end
 
   def test_it_can_find_by_updated_at
@@ -108,7 +108,7 @@ class ItemRepositoryTest < Minitest::Test
     engine = SalesEngine.new
     engine.start_up("./data/fixtures")
     items = engine.item_repository
-    assert_equal 5, items.find_all_by_created_at("2012-03-27 14:53:59 UTC").count
+    assert_equal 10, items.find_all_by_created_at("2012-03-27 14:53:59 UTC").count
   end
 
 end

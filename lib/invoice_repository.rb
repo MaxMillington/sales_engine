@@ -19,6 +19,26 @@ class InvoiceRepository
     sales_engine.find_merchant_by_id(merchant_id)
   end
 
+  def invoice_items(invoice_id)
+    sales_engine.invoice_item_repository.find_all_by_invoice_id(invoice_id)
+  end
+
+  def find_items(id)
+    item_id_list = invoice_items(id).map { |x| x.item_id.to_i }
+    # sales_engine.find_items_by_invoice_id(item_id_list)
+    item_id_list.map do |id|
+      sales_engine.find_items_by_id(id)
+    end
+  end
+
+  def find_transactions(id)
+    sales_engine.find_transactions_by_invoice_id(id)
+  end
+
+  def find_invoice_items(id)
+    sales_engine.find_invoice_items_by_invoice_id(id)
+  end
+
   def all
     @invoices
   end
@@ -31,7 +51,7 @@ class InvoiceRepository
     @invoices.find { |invoice| invoice.id == "#{id}" }
   end
 
-  def find_all_by_id
+  def find_all_by_id(id)
     @invoices.find_all { |invoice| invoice.id == "#{id}" }
   end
 

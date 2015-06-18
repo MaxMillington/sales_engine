@@ -1,5 +1,12 @@
 class InvoiceItem
-  attr_reader :id, :item_id, :invoice_id, :quantity, :unit_price, :created_at, :updated_at
+  attr_reader :id,
+              :item_id,
+              :invoice_id,
+              :quantity,
+              :unit_price,
+              :created_at,
+              :updated_at,
+              :repository
 
   def initialize(data, repository)
     @id         = data["id"]
@@ -10,6 +17,14 @@ class InvoiceItem
     @created_at = data["created_at"]
     @updated_at = data["updated_at"]
     @repository = repository
+  end
+
+  def invoice
+    repository.find_invoice(invoice_id)
+  end
+
+  def item
+    repository.find_item(item_id)
   end
 
 

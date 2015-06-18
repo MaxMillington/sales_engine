@@ -66,7 +66,7 @@ class InvoiceRepositoryTest < Minitest::Test
     engine = SalesEngine.new
     engine.start_up("./data/fixtures")
     inv = engine.invoice_repository
-    assert_equal 5, inv.find_all_by_customer_id("1").count
+    assert_equal 6, inv.find_all_by_customer_id("1").count
   end
 
   def test_find_all_invoices_by_merchant_id
@@ -80,21 +80,21 @@ class InvoiceRepositoryTest < Minitest::Test
     engine = SalesEngine.new
     engine.start_up("./data/fixtures")
     inv = engine.invoice_repository
-    assert_equal 5, inv.find_all_by_status("shipped").count
+    assert_equal 6, inv.find_all_by_status("shipped").count
   end
 
   def test_find_all_invoices_by_created_at
     engine = SalesEngine.new
     engine.start_up("./data/fixtures")
     inv = engine.invoice_repository
-    assert_equal 2, inv.find_all_by_created_at("2012-03-24 15:54:10 UTC").count
+    assert_equal 3, inv.find_all_by_created_at("2012-03-24 15:54:10 UTC").count
   end
 
   def test_find_all_invoices_by_updated_at
     engine = SalesEngine.new
     engine.start_up("./data/fixtures")
     inv = engine.invoice_repository
-    assert_equal 2, inv.find_all_by_updated_at("2012-03-24 15:54:10 UTC").count
+    assert_equal 3, inv.find_all_by_updated_at("2012-03-24 15:54:10 UTC").count
   end
 
 end
