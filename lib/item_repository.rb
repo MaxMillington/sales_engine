@@ -16,6 +16,10 @@ class ItemRepository
     sales_engine.find_merchant_by_id(merchant_id)
   end
 
+  def find_invoice_item(id)
+    sales_engine.find_invoice_item_by_id(id)
+  end
+
   def all
     @items
   end
@@ -26,6 +30,10 @@ class ItemRepository
 
   def find_by_id(id)
     items.find {|item| item.id == "#{id}"}
+  end
+
+  def find_all_by_id(id)
+    items.find_all {|item| item.id == "#{id}"}
   end
 
   def find_by_name(name)

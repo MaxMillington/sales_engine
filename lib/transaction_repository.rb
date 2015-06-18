@@ -10,18 +10,9 @@ class TransactionRepository
     @sales_engine = sales_engine
   end
 
-  # def load(filepath = './data/transactions.csv')
-  #   CSV.foreach(filepath, headers: true) do |row|
-  #     @transactions << Transaction.new(row["id"],
-  #                                row["invoice_id"],
-  #                                row["credit_card_number"],
-  #                                row["credit_card_expiration_date"],
-  #                                row["result"],
-  #                                row["created_at"],
-  #                                row["updated_at"],
-  #                                self)
-  #   end
-  # end
+  def find_invoice(id)
+    sales_engine.find_invoice_by_id(id)
+  end
 
   def all
     transactions

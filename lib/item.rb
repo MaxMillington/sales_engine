@@ -17,7 +17,7 @@ class Item
   end
 
   def invoice_items
-
+    repository.find_invoice_item(id)
   end
 
   def merchant

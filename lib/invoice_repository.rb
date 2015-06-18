@@ -23,6 +23,10 @@ class InvoiceRepository
     @invoices.find { |invoice| invoice.id == "#{id}" }
   end
 
+  def find_all_by_id
+    @invoices.find_all { |invoice| invoice.id == "#{id}" }
+  end
+
   def find_by_customer_id(customer_id)
     @invoices.find { |invoice| invoice.customer_id == "#{customer_id}" }
   end

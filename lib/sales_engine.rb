@@ -42,28 +42,20 @@ class SalesEngine
     merchant_repository.find_by_id(merchant_id)
   end
 
-  # def fill_item_repository(filepath)
-  #   @item_repository.load(filepath)
-  # end
-  #
-  # def fill_merchant_repository(filepath)
-  #   @merchant_repository.load(filepath)
-  # end
-  #
-  # def fill_transaction_repository(filepath)
-  #   @transaction_repository.load(filepath)
-  # end
-  #
-  # def fill_invoice_repository(filepath)
-  #   @invoice_repository.load(filepath)
-  # end
-  #
-  # def fill_invoice_item_repository(filepath)
-  #   @invoice_item_repository.load(filepath)
-  # end
-  #
-  # def fill_customer_repository(filepath)
-  #   @customer_repository.load(filepath)
-  # end
+  def find_invoice_item_by_id(id)
+    invoice_item_repository.find_all_by_id(id)
+  end
+
+  def find_invoice_by_id(invoice_id)
+    invoice_repository.find_by_id(invoice_id)
+  end
+
+  def find_items_by_id(id)
+    item_repository.find_all_by_id(id)
+  end
+
+  def find_invoices_by_id(id)
+    invoice_repository.find_all_by_id(id)
+  end
 
 end
