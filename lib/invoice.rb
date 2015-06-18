@@ -1,5 +1,12 @@
+
 class Invoice
-  attr_reader :id, :customer_id, :merchant_id, :status, :created_at, :updated_at
+  attr_reader :id,
+              :customer_id,
+              :merchant_id,
+              :status,
+              :created_at,
+              :updated_at,
+              :repository
 
   def initialize(data, repository)
     @id           = data["id"]
@@ -9,6 +16,14 @@ class Invoice
     @created_at   = data["created_at"]
     @updated_at   = data["updated_at"]
     @repository   = repository
+  end
+
+  def customer
+    repository.find_customer(customer_id)
+  end
+
+  def merchant
+    repository.find_merchant(merchant_id)
   end
 
 

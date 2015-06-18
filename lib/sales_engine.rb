@@ -38,12 +38,16 @@ class SalesEngine
     @customer_repository = CSVParser.create_customer_repo(self, filepath)
   end
 
+  def find_customer_by_id(customer_id)
+    customer_repository.find_by_id(customer_id)
+  end
+
   def find_merchant_by_id(merchant_id)
     merchant_repository.find_by_id(merchant_id)
   end
 
   def find_invoice_item_by_id(id)
-    invoice_item_repository.find_all_by_id(id)
+    invoice_item_repository.find_all_by_merchant_id(id)
   end
 
   def find_invoice_by_id(invoice_id)

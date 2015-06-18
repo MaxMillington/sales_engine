@@ -11,16 +11,16 @@ class MerchantTest < Minitest::Test
     assert_equal 'repository', item.repository
   end
 
-  def test_it_returns_an_invoice_instance
+  def test_it_returns_associated_items
     skip
     engine = SalesEngine.new
-    engine.start_up
+    engine.start_up("./data/fixtures")
     merchant_repo = engine.merchant_repository
     merchant = merchant_repo.find_by_id(3)
-    assert_equal "4", merchant.items
+    assert_equal "4", merchant.items.count
   end
 
-  def test_can_find_associated_invoice
+  def test_can_find_associated_invoices
     skip
     engine = SalesEngine.new
     engine.start_up
