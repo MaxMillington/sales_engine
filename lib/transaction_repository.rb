@@ -1,6 +1,8 @@
 require 'csv'
 require_relative 'transaction'
 require 'pry'
+require 'bigdecimal'
+require 'bigdecimal/util'
 
 class TransactionRepository
   attr_reader :transactions, :sales_engine

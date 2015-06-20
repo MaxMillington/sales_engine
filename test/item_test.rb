@@ -13,16 +13,16 @@ class ItemTest < Minitest::Test
   end
 
   def test_it_returns_a_merchant_instance
-    engine = SalesEngine.new
-    engine.start_up("./data/fixtures")
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
     item_repo = engine.item_repository
     item = item_repo.find_by_id(3)
     assert_equal "Schroeder-Jerde", item.merchant.name
   end
 
   def test_it_returns_invoice_items
-    engine = SalesEngine.new
-    engine.start_up("./data/fixtures")
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
     item_repo= engine.item_repository
     item = item_repo.find_by_id(528)
     assert_equal "2", item.invoice_items.map {|x| x.id}.join

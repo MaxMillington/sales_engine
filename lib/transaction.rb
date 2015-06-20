@@ -1,3 +1,6 @@
+require 'bigdecimal'
+require 'bigdecimal/util'
+
 class Transaction
   attr_reader :id,
               :invoice_id,

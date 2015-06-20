@@ -1,6 +1,8 @@
 require 'csv'
 require_relative 'merchant'
 require 'pry'
+require 'bigdecimal'
+require 'bigdecimal/util'
 
 
 class MerchantRepository
@@ -54,5 +56,6 @@ class MerchantRepository
   def find_all_by_updated_at(date)
     @merchants.find_all {|merchant| merchant.updated_at == "#{date}"}
   end
+
 
 end

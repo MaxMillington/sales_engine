@@ -12,16 +12,16 @@ class MerchantTest < Minitest::Test
   end
 
   def test_it_returns_associated_items
-    engine = SalesEngine.new
-    engine.start_up("./data/fixtures")
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
     merchant_repo = engine.merchant_repository
     merchant = merchant_repo.find_by_id(1)
     assert_equal 10, merchant.items.count
   end
 
   def test_finds_associated_invoices
-    engine = SalesEngine.new
-    engine.start_up("./data/fixtures")
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
     merchant = engine.merchant_repository.find_by_id(1)
     assert_equal "6", merchant.invoices.id
   end

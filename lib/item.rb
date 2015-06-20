@@ -1,6 +1,8 @@
 require 'bigdecimal'
 require 'pry'
 require_relative 'item_repository'
+require 'bigdecimal'
+require 'bigdecimal/util'
 
 class Item
   attr_reader :id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at, :repository

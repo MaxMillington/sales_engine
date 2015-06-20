@@ -1,6 +1,8 @@
 require 'csv'
 require_relative 'customer'
 require 'pry'
+require 'bigdecimal'
+require 'bigdecimal/util'
 
 
 class CustomerRepository

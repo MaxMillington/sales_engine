@@ -1,7 +1,8 @@
 require 'csv'
 require_relative 'invoice'
 require 'pry'
-
+require 'bigdecimal'
+require 'bigdecimal/util'
 
 class InvoiceRepository
   attr_reader :invoices, :sales_engine

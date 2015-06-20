@@ -2,6 +2,8 @@ require 'csv'
 require_relative 'item'
 require 'pry'
 require_relative '../lib/sales_engine'
+require 'bigdecimal'
+require 'bigdecimal/util'
 
 
 class ItemRepository

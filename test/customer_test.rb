@@ -12,8 +12,8 @@ class CustomerTest < Minitest::Test
   end
 
   def test_it_returns_a_collection_of_invoices
-    engine = SalesEngine.new
-    engine.start_up("./data/fixtures")
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
     customer_repo = engine.customer_repository
     customer = customer_repo.find_by_id(1)
     assert_equal [1, 2, 3, 4, 5, 6], customer.invoices.map {|x| x.id.to_i}

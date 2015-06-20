@@ -1,3 +1,5 @@
+require 'bigdecimal'
+require 'bigdecimal/util'
 
 class Invoice
   attr_reader :id,

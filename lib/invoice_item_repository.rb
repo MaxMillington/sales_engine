@@ -1,6 +1,8 @@
 require 'csv'
 require_relative 'invoice_item'
 require 'pry'
+require 'bigdecimal'
+require 'bigdecimal/util'
 
 
 class InvoiceItemRepository

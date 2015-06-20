@@ -19,7 +19,8 @@ class SalesEngine
   attr_reader :item_repository, :merchant_repository, :transaction_repository,
               :invoice_item_repository, :invoice_repository, :customer_repository
 
-  def initialize
+  def initialize(filepath = "./data")
+    @filepath = filepath
     @item_repository
     @merchant_repository
     @transaction_repository
@@ -29,13 +30,13 @@ class SalesEngine
   end
 
 
-  def start_up(filepath = "./data")
-    @merchant_repository = CSVParser.create_merchant_repo(self, filepath)
-    @item_repository = CSVParser.create_item_repo(self, filepath)
-    @transaction_repository = CSVParser.create_transaction_repo(self, filepath)
-    @invoice_repository = CSVParser.create_invoice_repo(self, filepath)
-    @invoice_item_repository = CSVParser.create_invoice_item_repo(self, filepath)
-    @customer_repository = CSVParser.create_customer_repo(self, filepath)
+  def startup
+    @merchant_repository = CSVParser.create_merchant_repo(self, @filepath)
+    @item_repository = CSVParser.create_item_repo(self, @filepath)
+    @transaction_repository = CSVParser.create_transaction_repo(self, @filepath)
+    @invoice_repository = CSVParser.create_invoice_repo(self, @filepath)
+    @invoice_item_repository = CSVParser.create_invoice_item_repo(self, @filepath)
+    @customer_repository = CSVParser.create_customer_repo(self, @filepath)
   end
 
   def find_customer_by_id(customer_id)
