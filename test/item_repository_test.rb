@@ -59,14 +59,14 @@ class ItemRepositoryTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     items = engine.item_repository
-    assert_equal "2", items.find_by_unit_price(67076.to_f/100).id
+    assert_equal "2", items.find_by_unit_price(BigDecimal.new("670.76")).id
   end
 
   def test_it_can_find_all_by_unit_price
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     items = engine.item_repository
-    assert_equal 1, items.find_all_by_unit_price(67076.to_f/100)
+    assert_equal 1, items.find_all_by_unit_price(BigDecimal.new("670.76")).count
   end
 
   def test_it_can_find_by_merchant_id

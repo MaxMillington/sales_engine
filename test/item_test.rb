@@ -6,11 +6,6 @@ require_relative '../lib/sales_engine'
 
 
 class ItemTest < Minitest::Test
-  def test_it_can_grab_its_repository
-    item = Item.new('rows', 'repository')
-    assert_equal 'repository', item.repository
-  end
-
   def test_it_returns_a_merchant_instance
     engine = SalesEngine.new("./data/fixtures")
     engine.startup

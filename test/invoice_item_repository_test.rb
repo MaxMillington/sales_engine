@@ -52,7 +52,14 @@ class InvoiceItemTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal "13635", inv.find_by_unit_price("13635").unit_price
+    assert_equal "136.35", inv.find_by_unit_price(BigDecimal.new("136.35")).unit_price.to_digits
+  end
+
+  def test_find_all_invoice_items_by_unit_price
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    inv = engine.invoice_item_repository
+    assert_equal 1, inv.find_all_by_unit_price(BigDecimal.new("791.40")).count
   end
 
   def test_it_can_find_by_created_at
@@ -97,12 +104,6 @@ class InvoiceItemTest < Minitest::Test
     assert_equal 1, inv.find_all_by_quantity("7").count
   end
 
-  def test_find_all_invoice_items_by_unit_price
-    engine = SalesEngine.new("./data/fixtures")
-    engine.startup
-    inv = engine.invoice_item_repository
-    assert_equal 1, inv.find_all_by_unit_price("79140").count
-  end
 
   def test_find_all_invoice_items_by_created_at
     engine = SalesEngine.new("./data/fixtures")

@@ -49,7 +49,7 @@ class InvoiceItemRepository
   end
 
   def find_by_unit_price(unit_price)
-    @invoice_items.find { |invoice_item| invoice_item.unit_price == "#{unit_price}" }
+    @invoice_items.find { |invoice_item| invoice_item.unit_price == unit_price }
   end
 
   def find_by_created_at(created_at)
@@ -77,7 +77,7 @@ class InvoiceItemRepository
   end
 
   def find_all_by_unit_price(unit_price)
-    @invoice_items.find_all { |invoice_item| invoice_item.unit_price == "#{unit_price}" }
+    @invoice_items.find_all { |invoice_item| invoice_item.unit_price == unit_price }
   end
 
   def find_all_by_created_at(created_at)
