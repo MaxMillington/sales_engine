@@ -1,6 +1,5 @@
 require 'csv'
 require_relative 'customer'
-require 'pry'
 require 'bigdecimal'
 require 'bigdecimal/util'
 
@@ -11,6 +10,10 @@ class CustomerRepository
   def initialize(sales_engine, data)
     @customers = data.map {|entry| Customer.new(entry, self)}
     @sales_engine = sales_engine
+  end
+
+  def inspect
+    "#<#{self.class} #{@customers.size} rows>"
   end
 
   def find_invoices(customer_id)
@@ -26,7 +29,7 @@ class CustomerRepository
   end
 
   def find_by_id(id)
-    @customers.find { |customer| customer.id == "#{id}" }
+    @customers.find { |customer| customer.id.to_i == id.to_i }
   end
 
   def find_by_first_name(first_name)

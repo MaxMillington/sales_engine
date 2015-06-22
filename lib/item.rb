@@ -1,5 +1,4 @@
 require 'bigdecimal'
-require 'pry'
 require_relative 'item_repository'
 require 'bigdecimal'
 require 'bigdecimal/util'

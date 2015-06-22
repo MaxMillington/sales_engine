@@ -1,6 +1,5 @@
 require 'csv'
 require_relative 'transaction'
-require 'pry'
 require 'bigdecimal'
 require 'bigdecimal/util'
 
@@ -12,8 +11,12 @@ class TransactionRepository
     @sales_engine = sales_engine
   end
 
-  def find_invoice(id)
-    sales_engine.find_invoice_by_id(id)
+  def inspect
+    "#<#{self.class} #{@transactions.size} rows>"
+  end
+
+  def find_invoice(invoice_id)
+    sales_engine.find_invoice_by_id(invoice_id)
   end
 
   def all
@@ -25,11 +28,11 @@ class TransactionRepository
   end
 
   def find_by_id(id)
-    transactions.find { |transaction| transaction.id == "#{id}" }
+    transactions.find { |transaction| transaction.id == id }
   end
 
   def find_by_invoice_id(id)
-    transactions.find {|transaction| transaction.invoice_id == "#{id}"}
+    transactions.find {|transaction| transaction.invoice_id.to_i == id.to_i }
   end
 
   def find_by_credit_card_number(num)
@@ -71,5 +74,11 @@ class TransactionRepository
   def find_all_by_invoice_id(id)
     transactions.find_all {|transaction| transaction.invoice_id == "#{id}"}
   end
+
+  # def successful_transactions
+  #   @transaction_success ||= all.select do |transaction|
+  #     transaction if transaction.successful?
+  #   end
+  # end
 
 end

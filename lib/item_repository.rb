@@ -1,6 +1,5 @@
 require 'csv'
 require_relative 'item'
-require 'pry'
 require_relative '../lib/sales_engine'
 require 'bigdecimal'
 require 'bigdecimal/util'
@@ -12,6 +11,10 @@ class ItemRepository
   def initialize(sales_engine, data)
     @items = data.map {|entry| Item.new(entry, self) }
     @sales_engine = sales_engine
+  end
+
+  def inspect
+    "#<#{self.class} #{@items.size} rows>"
   end
 
   def find_merchant(merchant_id)

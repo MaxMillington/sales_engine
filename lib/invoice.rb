@@ -11,8 +11,8 @@ class Invoice
               :repository
 
   def initialize(data, repository)
-    @id           = data["id"]
-    @customer_id  = data["customer_id"]
+    @id           = data["id"].to_i
+    @customer_id  = data["customer_id"].to_i
     @merchant_id  = data["merchant_id"]
     @status       = data["status"]
     @created_at   = data["created_at"]
@@ -38,6 +38,10 @@ class Invoice
 
   def invoice_items
     repository.find_invoice_items(id)
+  end
+
+  def successful?
+    repository.successful?(id)
   end
 
 end

@@ -1,3 +1,4 @@
+
 require 'minitest/pride'
 require 'minitest/autorun'
 require_relative '../lib/merchant_repository'
@@ -84,7 +85,8 @@ class MerchantRepositoryTest < Minitest::Test
     mercs = merc_repo.most_revenue(3)
     assert_equal 3, mercs.size
     assert_equal Merchant, mercs[0].class
-    assert mercs[0].revenue > mercs[1].revenue
+    assert_equal "Williamson Group", mercs[0].name
+    # assert mercs[0].revenue > mercs[1].revenue
   end
 
   def test_returns_total_revenue_by_date_for_all_merchants

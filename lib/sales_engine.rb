@@ -12,7 +12,6 @@ require_relative 'invoice_item'
 require_relative 'invoice_item_repository'
 require_relative 'item'
 require_relative 'item_repository'
-require 'pry'
 
 class SalesEngine
 
@@ -76,7 +75,7 @@ class SalesEngine
   end
 
   def find_invoices_by_merchant_id(merchant_id)
-    invoice_repository.find_by_merchant_id(merchant_id)
+    invoice_repository.find_all_by_merchant_id(merchant_id)
   end
 
   def find_items_by_invoice_id(invoice_id)
@@ -90,5 +89,26 @@ class SalesEngine
   def find_invoice_items_by_invoice_id(invoice_id)
     invoice_item_repository.find_all_by_invoice_id(invoice_id)
   end
+
+  def total_merchant_revenue(invoices)
+    invoice_item_repository.find_total_revenue_for_a_merchant(invoices)
+  end
+
+  def find_successful_invoices(invoices)
+    invoices.select {|invoice| invoice.successful?}
+  end
+  #
+  # def invoice_ids_for_successful_transactions
+  #   transaction_repository.successful_transactions.map do |transaction|
+  #     transaction.invoice_id
+  #   end
+  # end
+  #
+  def successful_invoice?(invoice_id)
+    transactions = transaction_repository.find_all_by_invoice_id(invoice_id)
+    transactions.any? {|transaction|
+      transaction.result == "success"}
+  end
+
 
 end

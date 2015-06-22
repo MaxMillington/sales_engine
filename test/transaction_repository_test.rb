@@ -37,7 +37,7 @@ class TransactionRepositoryTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     trans = engine.transaction_repository
-    assert_equal "5", trans.find_by_credit_card_number("4844518708741275").id
+    assert_equal 5, trans.find_by_credit_card_number("4844518708741275").id
   end
 
   def test_it_can_find_by_results

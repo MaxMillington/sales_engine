@@ -3,7 +3,7 @@ require 'minitest/pride'
 require_relative '../lib/merchant'
 require_relative '../lib/merchant_repository'
 require_relative '../lib/sales_engine'
-require 'pry'
+
 
 class MerchantTest < Minitest::Test
   def test_it_can_grab_its_repository
@@ -23,7 +23,7 @@ class MerchantTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     merchant = engine.merchant_repository.find_by_id(1)
-    assert_equal "6", merchant.invoices.id
+    assert_equal 1, merchant.invoices.size
   end
 
 end

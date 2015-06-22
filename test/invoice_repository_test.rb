@@ -17,7 +17,7 @@ class InvoiceRepositoryTest < Minitest::Test
     engine.startup
     inv = engine.invoice_repository
     id = inv.invoices.first.id
-    assert_equal "1", id
+    assert_equal 1, id
   end
 
   def test_random_returns_one_random_invoice_obj
@@ -31,7 +31,7 @@ class InvoiceRepositoryTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_repository
-    assert_equal "1", inv.find_by_id(4).customer_id
+    assert_equal 1, inv.find_by_id(4).customer_id
   end
 
   def test_find_a_invoice_by_merchant_id
@@ -66,7 +66,7 @@ class InvoiceRepositoryTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_repository
-    assert_equal 6, inv.find_all_by_customer_id("1").count
+    assert_equal 6, inv.find_all_by_customer_id(1).count
   end
 
   def test_find_all_invoices_by_merchant_id

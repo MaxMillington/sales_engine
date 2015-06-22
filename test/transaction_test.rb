@@ -3,7 +3,7 @@ require 'minitest/pride'
 require_relative '../lib/transaction'
 require_relative '../lib/transaction_repository'
 require_relative '../lib/sales_engine'
-require 'pry'
+
 
 
 class TransactionTest < Minitest::Test
@@ -13,11 +13,12 @@ class TransactionTest < Minitest::Test
   end
 
   def test_it_returns_an_invoice_instance
-    engine = SalesEngine.new("./data/fixtures")
+    engine = SalesEngine.new
     engine.startup
     transaction_repo = engine.transaction_repository
     transaction = transaction_repo.find_by_id(3)
-    assert_equal "4", transaction.invoice_id
+    # require 'pry'; binding.pry
+    assert_equal 4, transaction.invoice.id
   end
 
   def test_can_find_associated_invoice
@@ -25,7 +26,7 @@ class TransactionTest < Minitest::Test
     engine.startup
     transaction_repo = engine.transaction_repository
     transaction = transaction_repo.find_by_id(717)
-    assert_equal "609", transaction.invoice_id
+    assert_equal 609, transaction.invoice.id
   end
 
 

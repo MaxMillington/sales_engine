@@ -11,7 +11,7 @@ class Transaction
               :repository
 
   def initialize(data, repository)
-    @id                          = data["id"]
+    @id                          = data["id"].to_i
     @invoice_id                  = data["invoice_id"]
     @credit_card_number          = data["credit_card_number"]
     @credit_card_expiration_date = data["credit_card_expiration_date"]

@@ -25,4 +25,17 @@ class Merchant
     repository.find_invoices(id)
   end
 
+  # def revenue(date = nil)
+  #   repository.total_revenue_for_a_merchant(id, date)
+  # end
+
+  # def merchant_revenue_by_id
+  #   repository.find_revenue_by_id(id)
+  # end
+  #
+  # def merchant_revenue(date)
+  #   date = date.to_s
+  #   repository.find_revenue_by_id_by_date(id, date)
+  # end
+
 end

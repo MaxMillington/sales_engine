@@ -3,7 +3,6 @@ require 'minitest/pride'
 require_relative '../lib/item'
 require_relative '../lib/item_repository'
 require_relative '../lib/sales_engine'
-require 'pry'
 
 
 class ItemTest < Minitest::Test

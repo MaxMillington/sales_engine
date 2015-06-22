@@ -1,6 +1,5 @@
 require 'csv'
 require_relative 'invoice_item'
-require 'pry'
 require 'bigdecimal'
 require 'bigdecimal/util'
 
@@ -11,6 +10,10 @@ class InvoiceItemRepository
   def initialize(sales_engine, data)
     @invoice_items = data.map {|entry| InvoiceItem.new(entry, self)}
     @sales_engine = sales_engine
+  end
+
+  def inspect
+    "#<#{self.class} #{@invoice_items.size} rows>"
   end
 
   def find_invoice(invoice_id)
@@ -84,4 +87,31 @@ class InvoiceItemRepository
   def find_all_by_updated_at(updated_at)
     @invoice_items.find_all { |invoice_item| invoice_item.updated_at == "#{updated_at}" }
   end
+
+  def find_invoice_ids_from_invoices(invoices)
+    invoices.map do |invoice|
+      invoice.id
+    end
+  end
+
+  def find_invoice_items_from_ids(invoices)
+    find_invoice_ids_from_invoices(invoices).flat_map do |invoice_id|
+      find_all_by_invoice_id(invoice_id)
+    end
+  end
+
+  # def find_revenue_for_invoice_items(invoices)
+  #   find_invoice_items_from_ids(invoices).map do |inv_item|
+  #     inv_item.revenue
+  #   end
+  # end
+  #
+  # def find_total_revenue_for_a_merchant(invoices)
+  #   find_revenue_for_invoice_items(invoices).reduce(:+)
+  # end
+  #
+
+
+
+
 end

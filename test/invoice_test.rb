@@ -3,7 +3,6 @@ require 'minitest/pride'
 require_relative '../lib/sales_engine'
 require_relative '../lib/invoice'
 require_relative '../lib/invoice_repository'
-require 'pry'
 
 class InvoiceTest < Minitest::Test
   def test_it_can_grab_its_repository
@@ -32,7 +31,7 @@ class InvoiceTest < Minitest::Test
     engine.startup
     invoice_repo = engine.invoice_repository
     invoice = invoice_repo.find_by_id(1)
-    assert_equal ["Viae", "Video", "Vincit", "Vivimus", "Veni"], invoice.items.map {|x| x.map {|y| y.name}}.flatten
+    assert_equal ["Viae", "Video", "Vincit", "Vivimus", "Veni"], invoice.items.map {|x| x.name}
 
   end
 
@@ -41,7 +40,7 @@ class InvoiceTest < Minitest::Test
     engine.startup
     invoice_repo = engine.invoice_repository
     invoice = invoice_repo.find_by_id(6)
-    assert_equal ["5", "6"], invoice.transactions.map {|x| x.id}
+    assert_equal [5, 6], invoice.transactions.map {|x| x.id}
   end
 
   def test_it_returns_a_collection_of_associated_invoice_items
@@ -51,5 +50,13 @@ class InvoiceTest < Minitest::Test
     invoice = invoice_repo.find_by_id(1)
     assert_equal ["1", "2", "3", "4", "5"], invoice.invoice_items.map {|x| x.id}
   end
+
+  def test_it_returns_successful_invoices
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    invoice = engine.invoice_repository.find_by_id(1)
+    assert_equal true, invoice.successful?
+  end
+
 
 end
