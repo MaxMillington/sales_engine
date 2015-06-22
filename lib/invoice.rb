@@ -44,4 +44,14 @@ class Invoice
     repository.successful?(id)
   end
 
+  def revenue
+    total = invoice_items.map(&:revenue).reduce(:+) if successful?
+    total ? total : 0
+  end
+
+  def quantity
+    total = invoice_items.map(&:quantity).reduce(:+) if successful?
+    total ? total : 0
+  end
+
 end

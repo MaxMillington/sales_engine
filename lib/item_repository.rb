@@ -58,11 +58,11 @@ class ItemRepository
   end
 
   def find_by_unit_price(price)
-    items.find {|item| item.unit_price == "#{price}"}
+    items.find {|item| item.unit_price == price.to_f/100}
   end
 
   def find_all_by_unit_price(price)
-    items.find_all {|item| item.unit_price == "#{price}"}
+    items.find_all {|item| item.unit_price == price.to_f/100}
   end
 
   def find_by_merchant_id(merchant_id)

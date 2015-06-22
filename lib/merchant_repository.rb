@@ -66,6 +66,9 @@ class MerchantRepository
     @merchants.find_all {|merchant| merchant.updated_at == "#{date}"}
   end
 
+  def find_customer(customer_id)
+    sales_engine.customer_repository.find_by_id(customer_id)
+  end
 
   #
   # def find_successful_invoices(merchant_id)
@@ -73,7 +76,7 @@ class MerchantRepository
   #     i if sales_engine.invoice_ids_for_successful_transactions.include?(i.id)
   #   end
   # end
-
+  #
   # def most_revenue(x)
   #   invoices = @merchants.map do |merchant|
   #     merchant_id = merchant.id
@@ -84,16 +87,22 @@ class MerchantRepository
   #
   #   # hash.values.map {|x| x.reduce(0) {|sum, number| sum + number}}
   #
-  #   successful_invoices = invoices.map do |invoice|
-  #     if invoice.successful?
-  #       merchants << invoice.merchant
-  #       invoice
+  #   successful_invoices = invoices.map do |invoice_array|
+  #     invoice_array.map do |invoice|
+  #       if invoice.successful?
+  #         merchants << invoice.merchant
+  #         invoice
+  #       end
   #     end
   #   end
   #
-  #   invoice_items = successful_invoices.compact.map do |invoice|
+  #
+  #   invoice_items = successful_invoices.compact.map do |invoice_array|
+  #     invoice_array.compact.map do |invoice|
   #     invoice.invoice_items
+  #     end
   #   end
+  #
   #
   #   revenue_arrays = invoice_items.map {|x| x.map{|y| y.quantity.to_i * y.unit_price.to_i}}
   #

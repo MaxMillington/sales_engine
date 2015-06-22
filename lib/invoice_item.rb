@@ -30,5 +30,13 @@ class InvoiceItem
     repository.find_item(item_id)
   end
 
+  def revenue
+    @unit_price.to_i * @quantity.to_i
+  end
+
+  def successful?
+    invoice.successful?
+  end
+
 
 end
