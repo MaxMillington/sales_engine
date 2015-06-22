@@ -22,4 +22,20 @@ class Customer
     repository.find_invoices(id)
   end
 
+  def transactions
+    invoices.map(&:transactions).flatten
+  end
+
+  def successful_invoices
+    invoices.select(&:successful?)
+  end
+
+  def favorite_merchant
+    grouped_invoices = successful_invoices.group_by(&:merchant_id)
+    merchant_id = grouped_invoices.map do |merchant_id, invoices|
+      [invoices.size, merchant_id]
+    end.sort[-1][1]
+    repository.find_merchant(merchant_id)
+  end
+
 end

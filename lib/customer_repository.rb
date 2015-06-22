@@ -20,6 +20,10 @@ class CustomerRepository
     sales_engine.find_invoices_by_customer_id(customer_id)
   end
 
+  def find_merchant(merchant_id)
+    sales_engine.merchant_repository.find_by_id(merchant_id)
+  end
+
   def all
     @customers
   end
