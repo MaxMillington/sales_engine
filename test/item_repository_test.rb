@@ -14,7 +14,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_random_returns_one_random_item_obj
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./data/fixtures")
     engine.startup
     items = engine.item_repository
     refute_equal items.random, items.random
@@ -111,4 +111,18 @@ class ItemRepositoryTest < Minitest::Test
     assert_equal 10, items.find_all_by_created_at("2012-03-27 14:53:59 UTC").count
   end
 
+  def test_returns_top_x_items_sold
+    skip
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    top_selling = engine.item_repository.most_items(5)
+    assert_equal "Item Nam Magnam", top_selling[1].name
+  end
+
+  def test_determines_revenue_for_top_x_items
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    top_selling = engine.item_repository.most_revenue(2)
+    assert_equal "Vincit", top_selling.first.name
+  end
 end

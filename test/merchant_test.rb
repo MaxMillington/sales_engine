@@ -27,21 +27,21 @@ class MerchantTest < Minitest::Test
   end
 
   def test_find_total_revenue_for_a_merchant
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./data/fixtures")
     engine.startup
     merchant = engine.merchant_repository.find_by_id(1)
     assert_equal '528774.64', merchant.revenue.to_digits
   end
 
   def test_find_revenue_by_date
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./data/fixtures")
     engine.startup
     merchant = engine.merchant_repository.find_by_id(1)
     assert_equal '17716.51', merchant.revenue(Date.parse('2012-03-27')).to_digits
   end
 
   def test_finds_favorite_customer
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./data/fixtures")
     engine.startup
     merchant = engine.merchant_repository.find_by_id(2)
     customer = merchant.favorite_customer
@@ -50,7 +50,7 @@ class MerchantTest < Minitest::Test
   end
 
   def test_find_customers_with_pending_invoices
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./data/fixtures")
     engine.startup
     merchant = engine.merchant_repository.find_by_id(34)
     pending_customers = merchant.customers_with_pending_invoices

@@ -89,4 +89,12 @@ class ItemRepository
     items.find_all {|item| item.updated_at == "#{date}"}
   end
 
+  def most_revenue(num)
+    items.sort_by { |item| item.revenue }.reverse.take(num)
+  end
+
+  # def most_items(number)
+  #
+  # end
+
 end

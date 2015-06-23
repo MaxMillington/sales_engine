@@ -41,7 +41,7 @@ class Invoice
   end
 
   def successful?
-    repository.successful?(id)
+    transactions.any? { |t| t.successful? }
   end
 
   def revenue

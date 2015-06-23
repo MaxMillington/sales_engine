@@ -13,7 +13,7 @@ class TransactionTest < Minitest::Test
   end
 
   def test_it_returns_an_invoice_instance
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./data/fixtures")
     engine.startup
     transaction_repo = engine.transaction_repository
     transaction = transaction_repo.find_by_id(3)
@@ -22,7 +22,7 @@ class TransactionTest < Minitest::Test
   end
 
   def test_can_find_associated_invoice
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./data/fixtures")
     engine.startup
     transaction_repo = engine.transaction_repository
     transaction = transaction_repo.find_by_id(717)

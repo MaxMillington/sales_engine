@@ -19,7 +19,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_find_associated_transactions
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./data/fixtures")
     engine.startup
     customer = engine.customer_repository.find_by_id(3)
     assert_equal Transaction, customer.transactions[0].class
@@ -27,7 +27,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_find_favorite_merchant
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./data/fixtures")
     engine.startup
     customer = engine.customer_repository.find_by_id(4)
     assert_equal Merchant, customer.favorite_merchant.class

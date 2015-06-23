@@ -79,4 +79,8 @@ class MerchantRepository
     merchants_on_date.map { |merchant| merchant.revenue(date) }.reduce(:+)
   end
 
+  def most_items(number)
+    @merchants.sort_by { |merchant| merchant.quantity}.reverse[0...number]
+  end
+
 end

@@ -109,8 +109,9 @@ class SalesEngine
   #
   def successful_invoice?(invoice_id)
     transactions = transaction_repository.find_all_by_invoice_id(invoice_id)
-    transactions.any? {|transaction|
-      transaction.result == "success"}
+    transactions.any? do |transaction|
+      transaction.result == "success"
+    end
   end
 
 end
