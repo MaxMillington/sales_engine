@@ -32,8 +32,7 @@ class InvoiceRepository
     items = item_id_list.map do |id|
       sales_engine.find_items_by_id(id)
     end
-    flattened_items = items.flatten
-
+    items.flatten
   end
 
   def find_transactions(id)

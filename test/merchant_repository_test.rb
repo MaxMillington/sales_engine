@@ -86,14 +86,12 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal 3, mercs.size
     assert_equal Merchant, mercs[0].class
     assert_equal "Williamson Group", mercs[0].name
-    # assert mercs[0].revenue > mercs[1].revenue
   end
 
   def test_returns_total_revenue_by_date_for_all_merchants
-    skip
     engine = SalesEngine.new
     engine.startup
-    merc = engine.merchant_repository
+    merc   = engine.merchant_repository
     assert_equal '1908368.05', merc.revenue(Date.parse('2012-03-27')).to_digits
   end
 

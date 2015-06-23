@@ -70,4 +70,13 @@ class MerchantRepository
     sales_engine.customer_repository.find_by_id(customer_id)
   end
 
+  def revenue(date)
+    merchants_on_date = @merchants.find_all do |merchant|
+      merchant.invoices.any? do |invoice|
+        Date.parse(invoice.created_at) == date
+      end
+    end
+    merchants_on_date.map { |merchant| merchant.revenue(date) }.reduce(:+)
+  end
+
 end

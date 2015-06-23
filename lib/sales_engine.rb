@@ -32,7 +32,6 @@ class SalesEngine
     @customer_repository
   end
 
-
   def startup
     @merchant_repository = CSVParser.create_merchant_repo(self, @filepath)
     @item_repository = CSVParser.create_item_repo(self, @filepath)
@@ -113,6 +112,5 @@ class SalesEngine
     transactions.any? {|transaction|
       transaction.result == "success"}
   end
-
 
 end

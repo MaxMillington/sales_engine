@@ -100,18 +100,4 @@ class InvoiceItemRepository
     end
   end
 
-  # def find_revenue_for_invoice_items(invoices)
-  #   find_invoice_items_from_ids(invoices).map do |inv_item|
-  #     inv_item.revenue
-  #   end
-  # end
-  #
-  # def find_total_revenue_for_a_merchant(invoices)
-  #   find_revenue_for_invoice_items(invoices).reduce(:+)
-  # end
-  #
-
-
-
-
 end
