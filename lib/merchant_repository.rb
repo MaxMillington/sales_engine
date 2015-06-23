@@ -80,7 +80,7 @@ class MerchantRepository
   end
 
   def most_items(number)
-    @merchants.sort_by { |merchant| merchant.quantity}.reverse[0...number]
+    @merchants.sort_by { |merchant| merchant.quantity}.reverse.take(number)
   end
 
 end

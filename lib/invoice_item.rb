@@ -15,7 +15,7 @@ require 'bigdecimal/util'
     @id         = data["id"]
     @item_id    = data["item_id"]
     @invoice_id = data["invoice_id"]
-    @quantity   = data["quantity"]
+    @quantity   = data["quantity"].to_i
     @unit_price = BigDecimal.new(data["unit_price"])/100
     @created_at = data["created_at"]
     @updated_at = data["updated_at"]
@@ -37,6 +37,4 @@ require 'bigdecimal/util'
   def successful?
     invoice.successful?
   end
-
-
 end

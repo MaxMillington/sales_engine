@@ -96,12 +96,11 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_returns_top_x_merchants_by_items_sold
-    skip
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     merc_repo = engine.merchant_repository
     merc = merc_repo.most_items(4)
-    assert_equal "Kassulke, O'Hara and Quitzon", merc.first.name
+    assert_equal "Klein, Rempel and Jones", merc.first.name
     assert_equal 4, merc.size
   end
 

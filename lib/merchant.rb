@@ -72,9 +72,7 @@ class Merchant
   end
 
   def quantity
-    quantities = invoices.map(&:quantity)
-    integer_quantities = quantities.map(&:to_i)
-        integer_quantities.reduce(:+)
+    invoices.map(&:quantity).reduce(0,:+)
   end
 
 end
