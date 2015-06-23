@@ -22,4 +22,11 @@ class ItemTest < Minitest::Test
     assert_equal "2", item.invoice_items.map {|x| x.id}.join
   end
 
+  def test_best_day_returns_day_with_most_sales
+    engine = SalesEngine.new
+    engine.startup
+    item = engine.item_repository.find_by_id(600)
+    assert_equal '2012-03-26', item.best_day.to_s
+  end
+
 end

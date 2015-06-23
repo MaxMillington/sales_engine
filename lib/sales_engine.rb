@@ -15,8 +15,12 @@ require_relative 'item_repository'
 
 class SalesEngine
 
-  attr_reader :item_repository, :merchant_repository, :transaction_repository,
-              :invoice_item_repository, :invoice_repository, :customer_repository
+  attr_reader :item_repository,
+              :merchant_repository,
+              :transaction_repository,
+              :invoice_item_repository,
+              :invoice_repository,
+              :customer_repository
 
   def initialize(filepath = "./data")
     @filepath = filepath
@@ -90,9 +94,9 @@ class SalesEngine
     invoice_item_repository.find_all_by_invoice_id(invoice_id)
   end
 
-  def total_merchant_revenue(invoices)
-    invoice_item_repository.find_total_revenue_for_a_merchant(invoices)
-  end
+  # def total_merchant_revenue(invoices)
+  #   invoice_item_repository.find_total_revenue_for_a_merchant(invoices)
+  # end
 
   def find_successful_invoices(invoices)
     invoices.select {|invoice| invoice.successful?}

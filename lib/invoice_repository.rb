@@ -29,7 +29,6 @@ class InvoiceRepository
 
   def find_items(id)
     item_id_list = invoice_items(id).map { |x| x.item_id.to_i }
-    # sales_engine.find_items_by_invoice_id(item_id_list)
     items = item_id_list.map do |id|
       sales_engine.find_items_by_id(id)
     end
@@ -83,7 +82,6 @@ class InvoiceRepository
   end
 
   def find_all_by_customer_id(customer_id)
-    # require 'pry'; binding.pry
     @invoices.find_all { |invoice| invoice.customer_id == customer_id.to_i }
   end
 

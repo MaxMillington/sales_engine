@@ -25,4 +25,29 @@ class Item
     repository.find_merchant(merchant_id)
   end
 
+  def success_invoice_items_by_date
+    invoice_items.select(&:successful?).group_by do |invoice_item|
+      invoice_item.invoice.created_at
+    end
+  end
+
+  def quantify(invoice_items)
+    invoice_items.map(&:quantity).reduce(:+)
+  end
+
+  def day_rankings
+    success_invoice_items_by_date.map do |date, invoice_items|
+      [invoice_items.map(&:quantity).reduce(:+), date_format(date)]
+    end
+  end
+
+  def date_format(date)
+    Date.parse(date)
+  end
+
+  def best_day
+    best_day = day_rankings.sort_by(&:first)[-1]
+    best_day[-1]
+  end
+
 end
