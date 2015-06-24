@@ -23,15 +23,15 @@ class InvoiceTest < Minitest::Test
     engine.startup
     invoice_repo = engine.invoice_repository
     invoice = invoice_repo.find_by_id(6)
-    assert_equal "Schroeder-Jerde", invoice.merchant.name
+    assert_equal "Cummings-Thiel", invoice.merchant.name
   end
 
   def test_it_returns_a_collection_of_associated_items
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     invoice_repo = engine.invoice_repository
-    invoice = invoice_repo.find_by_id(1)
-    assert_equal ["Viae", "Video", "Vincit", "Vivimus", "Veni"], invoice.items.map {|x| x.name}
+    invoice = invoice_repo.find_by_id(4)
+    assert_equal ["Item Qui Esse", "Item Autem Minima"], invoice.items.map {|x| x.name}
 
   end
 
@@ -39,16 +39,16 @@ class InvoiceTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     invoice_repo = engine.invoice_repository
-    invoice = invoice_repo.find_by_id(6)
-    assert_equal [5, 6], invoice.transactions.map {|x| x.id}
+    invoice = invoice_repo.find_by_id(4)
+    assert_equal [3, 4], invoice.transactions.map {|x| x.id}
   end
 
   def test_it_returns_a_collection_of_associated_invoice_items
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     invoice_repo = engine.invoice_repository
-    invoice = invoice_repo.find_by_id(1)
-    assert_equal ["1", "2", "3", "4", "5"], invoice.invoice_items.map {|x| x.id}
+    invoice = invoice_repo.find_by_id(4)
+    assert_equal [1, 4], invoice.invoice_items.map {|x| x.id}
   end
 
   def test_it_returns_successful_invoices

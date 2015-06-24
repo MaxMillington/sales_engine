@@ -32,6 +32,10 @@ class Item
     repository.find_merchant(merchant_id)
   end
 
+  def successful_invoice_items
+    invoice_items.select(&:successful?)
+  end
+
   def success_invoice_items_by_date
     invoice_items.select(&:successful?).group_by do |invoice_item|
       invoice_item.invoice.created_at
@@ -55,6 +59,19 @@ class Item
   def best_day
     best_day = day_rankings.sort_by(&:first)[-1]
     best_day[-1]
+  end
+
+  def quantity_of_items
+    successful_invoice_items.map(&:quantity)
+  end
+
+  def number_sold
+    quantity_of_items.map(&:to_i).reduce(0, :+)
+  end
+
+  def revenue
+    successful_invoice_items.map(&:revenue).reduce(0, :+)
+    # number_sold.to_i * unit_price.to_i
   end
 
 end

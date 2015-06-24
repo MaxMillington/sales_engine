@@ -21,7 +21,7 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_random_returns_one_random_invoice_obj
-    engine = SalesEngine.new
+    engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_repository
     refute_equal inv.random, inv.random
@@ -38,28 +38,28 @@ class InvoiceRepositoryTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_repository
-    assert_equal "26", inv.find_by_id(1).merchant_id
+    assert_equal "1", inv.find_by_id(1).merchant_id
   end
 
   def test_find_a_invoice_by_status
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_repository
-    assert_equal "26", inv.find_by_customer_id(1).merchant_id
+    assert_equal "1", inv.find_by_customer_id(1).merchant_id
   end
 
   def test_it_can_find_by_created_at
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_repository
-    assert_equal "26", inv.find_by_created_at("2012-03-25 09:54:09 UTC").merchant_id
+    assert_equal "1", inv.find_by_created_at("2012-03-25 09:54:09 UTC").merchant_id
   end
 
   def test_it_can_find_by_updated_at
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_repository
-    assert_equal "26", inv.find_by_updated_at("2012-03-25 09:54:09 UTC").merchant_id
+    assert_equal "1", inv.find_by_updated_at("2012-03-25 09:54:09 UTC").merchant_id
   end
 
   def test_find_all_invoices_by_customer_id
@@ -73,7 +73,7 @@ class InvoiceRepositoryTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_repository
-    assert_equal 1, inv.find_all_by_merchant_id("33").count
+    assert_equal 2, inv.find_all_by_merchant_id("2").count
   end
 
   def test_find_all_invoices_by_status

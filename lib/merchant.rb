@@ -71,4 +71,8 @@ class Merchant
     end
   end
 
+  def quantity
+    invoices.map(&:quantity).reduce(0,:+)
+  end
+
 end
