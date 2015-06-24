@@ -23,7 +23,7 @@ class CustomerTest < Minitest::Test
     engine.startup
     customer = engine.customer_repository.find_by_id(1)
     assert_equal Transaction, customer.transactions[0].class
-    assert_equal 7, customer.transactions.size
+    assert_equal 9, customer.transactions.size
   end
 
   def test_find_favorite_merchant

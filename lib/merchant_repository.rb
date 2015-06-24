@@ -26,10 +26,6 @@ class MerchantRepository
     sales_engine.find_invoices_by_merchant_id(id)
   end
 
-  def revenue
-    @revenue
-  end
-
   def all
     @merchants
   end
@@ -81,6 +77,11 @@ class MerchantRepository
 
   def most_items(number)
     @merchants.sort_by { |merchant| merchant.quantity}.reverse.take(number)
+  end
+
+  def most_revenue(num)
+    # require 'pry'; binding.pry
+    @merchants.sort_by { |merchant| merchant.revenue}.reverse.take(num)
   end
 
 end
