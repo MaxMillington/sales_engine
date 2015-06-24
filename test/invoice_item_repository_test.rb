@@ -17,7 +17,7 @@ class InvoiceItemTest < Minitest::Test
     engine.startup
     inv = engine.invoice_item_repository
     item_id = inv.invoice_items.first.item_id
-    assert_equal "539", item_id
+    assert_equal "1", item_id
   end
 
   def test_random_returns_one_random_invoice_item_obj
@@ -31,7 +31,7 @@ class InvoiceItemTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal "5", inv.find_by_id(5).id
+    assert_equal 5, inv.find_by_id(5).id
   end
 
   def test_find_a_invoice_item_by_invoice_id
@@ -45,7 +45,7 @@ class InvoiceItemTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal "5", inv.find_by_quantity("5").quantity
+    assert_equal 5, inv.find_by_quantity(5).quantity
   end
 
   def test_find_a_invoice_item_by_unit_price
@@ -66,42 +66,42 @@ class InvoiceItemTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal "539", inv.find_by_created_at("2012-03-27 14:54:09 UTC").item_id
+    assert_equal "1", inv.find_by_created_at("2012-03-27 14:54:09 UTC").item_id
   end
 
   def test_it_can_find_by_updated_at
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal "539", inv.find_by_updated_at("2012-03-27 14:54:09 UTC").item_id
+    assert_equal "1", inv.find_by_updated_at("2012-03-27 14:54:09 UTC").item_id
   end
 
   def test_find_all_invoice_items_by_id
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal 1, inv.find_all_by_item_id("539").count
+    assert_equal 1, inv.find_all_by_item_id("5").count
   end
 
   def test_find_all_invoice_items_by_item_id
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal 1, inv.find_all_by_item_id("529").count
+    assert_equal 1, inv.find_all_by_item_id("2").count
   end
 
   def test_find_all_invoice_items_by_invoice_id
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal 5, inv.find_all_by_invoice_id("1").count
+    assert_equal 1, inv.find_all_by_invoice_id("1").count
   end
 
   def test_find_all_invoice_items_by_quantity
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal 1, inv.find_all_by_quantity("7").count
+    assert_equal 1, inv.find_all_by_quantity(5).count
   end
 
 
@@ -109,14 +109,14 @@ class InvoiceItemTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal 5, inv.find_all_by_created_at("2012-03-27 14:54:09 UTC").count
+    assert_equal 6, inv.find_all_by_created_at("2012-03-27 14:54:09 UTC").count
   end
 
   def test_find_all_invoice_items_by_updated_at
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal 5, inv.find_all_by_updated_at("2012-03-27 14:54:09 UTC").count
+    assert_equal 6, inv.find_all_by_updated_at("2012-03-27 14:54:09 UTC").count
   end
 
 end

@@ -16,7 +16,7 @@ class MerchantTest < Minitest::Test
     engine.startup
     merchant_repo = engine.merchant_repository
     merchant = merchant_repo.find_by_id(1)
-    assert_equal 10, merchant.items.count
+    assert_equal 3, merchant.items.count
   end
 
   def test_finds_associated_invoices
@@ -30,14 +30,14 @@ class MerchantTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     merchant = engine.merchant_repository.find_by_id(1)
-    assert_equal '528774.64', merchant.revenue.to_digits
+    assert_equal '5539.8', merchant.revenue.to_digits
   end
 
   def test_find_revenue_by_date
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     merchant = engine.merchant_repository.find_by_id(1)
-    assert_equal '17716.51', merchant.revenue(Date.parse('2012-03-27')).to_digits
+    assert_equal '5539.8', merchant.revenue(Date.parse('2012-03-25')).to_digits
   end
 
   def test_finds_favorite_customer
@@ -46,16 +46,15 @@ class MerchantTest < Minitest::Test
     merchant = engine.merchant_repository.find_by_id(2)
     customer = merchant.favorite_customer
     assert_equal Customer, customer.class
-    assert_equal "Efren", customer.first_name
+    assert_equal "Joey", customer.first_name
   end
 
   def test_find_customers_with_pending_invoices
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
-    merchant = engine.merchant_repository.find_by_id(34)
+    merchant = engine.merchant_repository.find_by_id(1)
     pending_customers = merchant.customers_with_pending_invoices
-    assert_equal 2, pending_customers.size
-    assert_equal Customer, pending_customers[0].class
+    assert_equal 0, pending_customers.size
   end
 
 end

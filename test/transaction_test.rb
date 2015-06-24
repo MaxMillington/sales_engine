@@ -25,8 +25,8 @@ class TransactionTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     transaction_repo = engine.transaction_repository
-    transaction = transaction_repo.find_by_id(717)
-    assert_equal 609, transaction.invoice.id
+    transaction = transaction_repo.find_by_id(2)
+    assert_equal 2, transaction.invoice.id
   end
 
 

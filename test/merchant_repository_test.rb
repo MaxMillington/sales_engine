@@ -60,7 +60,7 @@ class MerchantRepositoryTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     merc = engine.merchant_repository
-    assert_equal 2, merc.find_all_by_name("Williamson Group").count
+    assert_equal 1, merc.find_all_by_name("Williamson Group").count
   end
 
   def test_it_can_find_all_by_created_at
@@ -92,7 +92,7 @@ class MerchantRepositoryTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     merc   = engine.merchant_repository
-    assert_equal '1908368.05', merc.revenue(Date.parse('2012-03-27')).to_digits
+    assert_equal '5539.8', merc.revenue(Date.parse('2012-03-25')).to_digits
   end
 
   def test_returns_top_x_merchants_by_items_sold

@@ -80,7 +80,7 @@ class ItemRepositoryTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     items = engine.item_repository
-    assert_equal 10, items.find_all_by_merchant_id("1").count
+    assert_equal 3, items.find_all_by_merchant_id("1").count
   end
 
   def test_it_can_find_by_created_at
@@ -123,6 +123,6 @@ class ItemRepositoryTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     top_selling = engine.item_repository.most_revenue(2)
-    assert_equal "Vincit", top_selling.first.name
+    assert_equal "Item Ea Voluptatum", top_selling.first.name
   end
 end

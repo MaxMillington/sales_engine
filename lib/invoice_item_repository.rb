@@ -53,7 +53,7 @@ class InvoiceItemRepository
   end
 
   def find_by_created_at(created_at)
-    @invoice_items.find { |invoice_item| invoice_item.created_at == "#{created_at}" }
+    @invoice_items.find { |invoice_item| invoice_item.created_at == created_at.to_s }
   end
 
   def find_by_updated_at(updated_at)

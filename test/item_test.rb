@@ -14,18 +14,18 @@ class ItemTest < Minitest::Test
   def test_it_returns_a_merchant_instance
     item_repo = @engine.item_repository
     item = item_repo.find_by_id(3)
-    assert_equal "Schroeder-Jerde", item.merchant.name
+    assert_equal "Willms and Sons", item.merchant.name
   end
 
   def test_it_returns_invoice_items
     item_repo= @engine.item_repository
-    item = item_repo.find_by_id(528)
-    assert_equal "2", item.invoice_items.map {|x| x.id}.join
+    item = item_repo.find_by_id(3)
+    assert_equal "26", item.invoice_items.map {|x| x.id}.join
   end
 
   def test_best_day_returns_day_with_most_sales
-    item = @engine.item_repository.find_by_id(600)
-    assert_equal '2012-03-26', item.best_day.to_s
+    item = @engine.item_repository.find_by_id(1)
+    assert_equal '2012-03-24', item.best_day.to_s
   end
 
   def test_number_sold_excludes_failed_transactions
