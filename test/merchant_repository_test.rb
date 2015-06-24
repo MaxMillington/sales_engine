@@ -22,7 +22,7 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_random_returns_one_random_merchant_obj
-    engine = SalesEngine.new("./data/fixtures")
+    engine = SalesEngine.new
     engine.startup
     merc = engine.merchant_repository
     refute_equal merc.random, merc.random

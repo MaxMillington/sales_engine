@@ -65,13 +65,13 @@ class Item
     successful_invoice_items.map(&:quantity)
   end
 
-  def number_sold
+  def quantity_sold
     quantity_of_items.map(&:to_i).reduce(0, :+)
   end
 
   def revenue
     successful_invoice_items.map(&:revenue).reduce(0, :+)
-    # number_sold.to_i * unit_price.to_i
   end
+
 
 end

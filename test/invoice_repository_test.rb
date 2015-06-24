@@ -21,7 +21,7 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_random_returns_one_random_invoice_obj
-    engine = SalesEngine.new("./data/fixtures")
+    engine = SalesEngine.new
     engine.startup
     inv = engine.invoice_repository
     refute_equal inv.random, inv.random

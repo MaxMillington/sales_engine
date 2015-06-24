@@ -21,7 +21,7 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_random_returns_one_random_customer_obj
-    engine = SalesEngine.new("./data/fixtures")
+    engine = SalesEngine.new
     engine.startup
     cust = engine.customer_repository
     refute_equal cust.random, cust.random
