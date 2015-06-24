@@ -97,4 +97,29 @@ class InvoiceRepositoryTest < Minitest::Test
     assert_equal 3, inv.find_all_by_updated_at("2012-03-24 15:54:10 UTC").count
   end
 
+  def test_create_new_invoices
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    customer = engine.customer_repository.find_by_id(1)
+    merchant = engine.merchant_repository.find_by_id(1)
+    item1 = engine.item_repository.find_by_id(1)
+    item2 = engine.item_repository.find_by_id(2)
+    engine.invoice_repository.create(customer: customer, merchant: merchant, items: [item1, item2])
+    invoice = engine.invoice_repository.invoices.last
+    assert_equal 1, invoice.customer_id
+    assert_equal 1, invoice.merchant_id
+    assert_equal 'shipped', invoice.status
+    assert_equal 21689, engine.invoice_item_repository.invoice_items.last.id
+  end
+
+  def test_charge_method
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    engine.invoice_repository.charge('4640960137749750', '10/16', 'success', 23, "2012-03-27 14:54:09 UTC")
+    transaction = engine.transaction_repository.transactions.last
+    assert_equal 5596, transaction.id
+    assert_equal 23, transaction.invoice_id
+    assert transaction.success?
+  end
+
 end

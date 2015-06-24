@@ -43,6 +43,10 @@ class InvoiceRepository
     sales_engine.find_invoice_items_by_invoice_id(id)
   end
 
+  def create(customer, merchant, item)
+
+  end
+
   def all
     @invoices
   end
