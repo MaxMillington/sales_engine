@@ -19,6 +19,18 @@ class TransactionRepository
     sales_engine.find_invoice_by_id(invoice_id)
   end
 
+  def create(credit_card_number, credit_card_expiration, result, invoice_id, date)
+    data ={"id" => new_number, "invoice_id" => invoice_id,
+           "credit_card_number" => credit_card_number, "credit_card_expiration" => credit_card_expiration,
+           "result" => result, "created_at" => date, "updated_at" => date}
+    @transactions << Transaction.new(data, self)
+  end
+
+  def new_number
+    largest_number = transactions.sort_by {|x| x.id }.last.id
+    largest_number + 1
+  end
+
   def all
     transactions
   end

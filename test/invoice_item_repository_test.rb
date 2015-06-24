@@ -119,4 +119,22 @@ class InvoiceItemTest < Minitest::Test
     assert_equal 6, inv.find_all_by_updated_at("2012-03-27 14:54:09 UTC").count
   end
 
+  def test_it_has_created_a_new_invoice_items
+    engine = SalesEngine.new("./data/fixtures")
+    engine.startup
+    item1 = engine.item_repository.find_by_id(1)
+    item2 = engine.item_repository.find_by_id(2)
+    customer = engine.customer_repository.find_by_id(1)
+    merchant = engine.merchant_repository.find_by_id(2)
+    engine.invoice_repository.create(customer: customer, merchant: merchant, items: [item1, item2])
+    first = engine.invoice_item_repository.invoice_items[0]
+    second = engine.invoice_item_repository.invoice_items.last
+    assert_equal "1", first.item_id
+    assert_equal 5, first.quantity
+    assert_equal "2", second.item_id
+    assert_equal 1, second.quantity
+    assert_equal 1, first.id
+    assert_equal 8, second.id
+  end
+
 end

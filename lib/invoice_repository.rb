@@ -43,8 +43,25 @@ class InvoiceRepository
     sales_engine.find_invoice_items_by_invoice_id(id)
   end
 
-  def create(customer, merchant, item)
+  def create(data)
+    date = Time.now.strftime('%Y-%m-%d %H:%M:%S UTC')
+    new_invoice_data = {"id" => new_number, "customer_id" => data[:customer].id,
+                        "merchant_id" => data[:merchant].id, "status" => data[:status], "created_at" => date,
+                        "updated_at" => date}
+    new_invoice = Invoice.new(new_invoice_data, self)
+    invoices << new_invoice
+    sales_engine.create_invoice_items(data, new_invoice.id)
+    new_invoice
+  end
 
+  def new_number
+    largest_id_number = invoices.sort_by {|invoice| invoice.id}.last.id
+    largest_id_number + 1
+  end
+
+  def charge(credit_card_number, credit_card_expiration, result, id, date)
+    sales_engine.transaction_repository
+        .create(credit_card_number, credit_card_expiration, result, id, date)
   end
 
   def all
@@ -57,7 +74,6 @@ class InvoiceRepository
 
   def find_by_id(id)
     @invoices.find { |invoice| invoice.id == id.to_i }
-    # require 'pry'; binding.pry
   end
 
   def find_all_by_id(id)

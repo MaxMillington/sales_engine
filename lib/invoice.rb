@@ -54,8 +54,4 @@ class Invoice
     total ? total : 0
   end
 
-  def charge(credit_card, credit_card_expiration_date, result)
-
-  end
-
 end

@@ -84,17 +84,6 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal '5539.8', merc.revenue(Date.parse('2012-03-25')).to_digits
   end
 
-  def test_return_top_x_merchants_by_revenue
-    skip
-    engine = SalesEngine.new("./data/fixtures")
-    engine.startup
-    merc_repo = engine.merchant_repository
-    mercs = merc_repo.most_revenue(3)
-    assert_equal 3, mercs.size
-    assert_equal Merchant, mercs[0].class
-    assert_equal "Klein, Rempel and Jones", mercs.first.name
-  end
-
   def test_returns_top_x_merchants_by_items_sold
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
