@@ -80,7 +80,6 @@ class MerchantRepository
   end
 
   def most_revenue(num)
-    # require 'pry'; binding.pry
     @merchants.sort_by { |merchant| merchant.revenue}.reverse.take(num)
   end
 

@@ -75,10 +75,4 @@ class TransactionRepository
     transactions.find_all {|transaction| transaction.invoice_id == "#{id}"}
   end
 
-  # def successful_transactions
-  #   @transaction_success ||= all.select do |transaction|
-  #     transaction if transaction.successful?
-  #   end
-  # end
-
 end

@@ -93,20 +93,10 @@ class SalesEngine
     invoice_item_repository.find_all_by_invoice_id(invoice_id)
   end
 
-  # def total_merchant_revenue(invoices)
-  #   invoice_item_repository.find_total_revenue_for_a_merchant(invoices)
-  # end
-
   def find_successful_invoices(invoices)
     invoices.select {|invoice| invoice.successful?}
   end
-  #
-  # def invoice_ids_for_successful_transactions
-  #   transaction_repository.successful_transactions.map do |transaction|
-  #     transaction.invoice_id
-  #   end
-  # end
-  #
+
   def successful_invoice?(invoice_id)
     transactions = transaction_repository.find_all_by_invoice_id(invoice_id)
     transactions.any? do |transaction|

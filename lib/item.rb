@@ -73,5 +73,4 @@ class Item
     successful_invoice_items.map(&:revenue).reduce(0, :+)
   end
 
-
 end
