@@ -102,18 +102,4 @@ class ItemRepository
     top_items.map { |num, id| find_by_id(id) }
   end
 
-  # def invoice_item_array
-  #   items.map do |item|
-  #     item.successful_invoice_items
-  #   end.map do |x|
-  #     x.sort_by do |invoice_item|
-  #     invoice_item.quantity
-  #   end.reverse
-  #   end
-  # end
-
-  # def most_items(number)
-  #   invoice_item_array.map {|x| x.map{|y| y.item}}.take(number).flatten
-  # end
-
 end

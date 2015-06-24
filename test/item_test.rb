@@ -29,8 +29,8 @@ class ItemTest < Minitest::Test
   end
 
   def test_number_sold_excludes_failed_transactions
-    failed_item = @engine.item_repository.find_by_id(5) #item 5 has failed transaction in fixture data
-    success_item = @engine.item_repository.find_by_id(9) #item 9 should be good
+    failed_item = @engine.item_repository.find_by_id(5)
+    success_item = @engine.item_repository.find_by_id(9)
     assert_equal 0, failed_item.quantity_sold
   end
 end
