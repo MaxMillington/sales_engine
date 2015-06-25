@@ -55,7 +55,7 @@ class Invoice
   end
 
   def charge(data)
-    repository.charge(data)
+    repository.charge(data, id)
   end
 
 end

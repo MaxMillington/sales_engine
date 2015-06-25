@@ -60,9 +60,8 @@ class InvoiceRepository
     largest_id_number + 1
   end
 
-  def charge(data)
-    sales_engine.transaction_repository
-        .create(credit_card_number, credit_card_expiration, result, id, date)
+  def charge(data, id)
+    sales_engine.transaction_repository.create(data, id)
   end
 
   def all

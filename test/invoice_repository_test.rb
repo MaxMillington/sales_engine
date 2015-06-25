@@ -111,14 +111,15 @@ class InvoiceRepositoryTest < Minitest::Test
     assert_equal 8, engine.invoice_item_repository.invoice_items.last.id
   end
 
-  def test_charge_method
-    engine = SalesEngine.new("./data/fixtures")
-    engine.startup
-    engine.invoice_repository.charge('4640960137749750', '10/16', 'success', 23, "2012-03-27 14:54:09 UTC")
-    transaction = engine.transaction_repository.transactions.last
-    assert_equal 9, transaction.id
-    assert_equal 23, transaction.invoice_id
-    assert transaction.successful?
-  end
+  # def test_charge_method
+  #   engine = SalesEngine.new("./data/fixtures")
+  #   engine.startup
+  #   engine.invoice_repository.charge(credit_card_number: "4444333322221111",
+  #                                    credit_card_expiration: "10/13", result: "success", id: => id)
+  #   transaction = engine.transaction_repository.transactions.last
+  #   assert_equal 9, transaction.id
+  #   assert_equal 23, transaction.invoice_id
+  #   assert transaction.successful?
+  # end
 
 end

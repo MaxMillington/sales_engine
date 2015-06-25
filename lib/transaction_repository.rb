@@ -19,11 +19,17 @@ class TransactionRepository
     sales_engine.find_invoice_by_id(invoice_id)
   end
 
-  def create(credit_card_number, credit_card_expiration, result, invoice_id, date)
-    data ={"id" => new_number, "invoice_id" => invoice_id,
-           "credit_card_number" => credit_card_number, "credit_card_expiration" => credit_card_expiration,
-           "result" => result, "created_at" => date, "updated_at" => date}
-    @transactions << Transaction.new(data, self)
+  def create(data, id)
+    data = {
+        "id"                          => new_number,
+        "invoice_id"                  => id,
+        "credit_card_number"          => data[:credit_card_number],
+        "credit_card_expiration_date" => data[:credit_card_expiration_date],
+        "result"                      => data[:result],
+        "created_at"                  => Date.new,
+        "updated_at"                  => Date.new
+    }
+    transactions << Transaction.new(data, self)
   end
 
   def new_number
@@ -84,7 +90,7 @@ class TransactionRepository
   end
 
   def find_all_by_invoice_id(id)
-    transactions.find_all {|transaction| transaction.invoice_id == "#{id}"}
+    transactions.find_all {|transaction| transaction.invoice_id == id}
   end
 
 end
