@@ -37,7 +37,7 @@ class SalesEngine
     @item_repository = CSVParser.create_item_repo(self, @filepath)
     @transaction_repository = CSVParser.create_transaction_repo(self, @filepath)
     @invoice_repository = CSVParser.create_invoice_repo(self, @filepath)
-    @invoice_item_repository = CSVParser.create_invoice_item_repo(self, @filepath)
+    @invoice_item_repository=CSVParser.create_invoice_item_repo(self, @filepath)
     @customer_repository = CSVParser.create_customer_repo(self, @filepath)
   end
 

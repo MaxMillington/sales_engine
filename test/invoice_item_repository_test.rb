@@ -104,7 +104,6 @@ class InvoiceItemTest < Minitest::Test
     assert_equal 1, inv.find_all_by_quantity(5).count
   end
 
-
   def test_find_all_invoice_items_by_created_at
     engine = SalesEngine.new("./data/fixtures")
     engine.startup

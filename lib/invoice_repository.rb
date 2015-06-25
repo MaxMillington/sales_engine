@@ -47,7 +47,8 @@ class InvoiceRepository
   def create(data)
     date = Time.now.strftime('%Y-%m-%d %H:%M:%S UTC')
     new_invoice_data = {"id" => new_number, "customer_id" => data[:customer].id,
-                        "merchant_id" => data[:merchant].id, "status" => data[:status], "created_at" => date,
+                        "merchant_id" => data[:merchant].id,
+                        "status" => data[:status], "created_at" => date,
                         "updated_at" => date}
     new_invoice = Invoice.new(new_invoice_data, self)
     @invoices << new_invoice

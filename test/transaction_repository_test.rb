@@ -13,7 +13,7 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_random_returns_one_random_transaction_obj
-    engine = SalesEngine.new("./data/fixtures")
+    engine = SalesEngine.new
     engine.startup
     trans = engine.transaction_repository
     refute_equal trans.random, trans.random
