@@ -6,6 +6,7 @@ require 'bigdecimal/util'
 class InvoiceRepository
   attr_reader :invoices, :sales_engine
 
+
   def initialize(sales_engine, data)
     @invoices = data.map {|entry| Invoice.new(entry, self)}
     @sales_engine = sales_engine
@@ -49,7 +50,7 @@ class InvoiceRepository
                         "merchant_id" => data[:merchant].id, "status" => data[:status], "created_at" => date,
                         "updated_at" => date}
     new_invoice = Invoice.new(new_invoice_data, self)
-    invoices << new_invoice
+    @invoices << new_invoice
     sales_engine.create_invoice_items(data, new_invoice.id)
     new_invoice
   end
@@ -59,7 +60,7 @@ class InvoiceRepository
     largest_id_number + 1
   end
 
-  def charge(credit_card_number, credit_card_expiration, result, id, date)
+  def charge(data)
     sales_engine.transaction_repository
         .create(credit_card_number, credit_card_expiration, result, id, date)
   end

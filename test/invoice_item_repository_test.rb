@@ -38,7 +38,7 @@ class InvoiceItemTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal "1", inv.find_by_invoice_id("1").invoice_id
+    assert_equal 1, inv.find_by_invoice_id(1).invoice_id
   end
 
   def test_find_a_invoice_item_by_quantity
@@ -94,7 +94,7 @@ class InvoiceItemTest < Minitest::Test
     engine = SalesEngine.new("./data/fixtures")
     engine.startup
     inv = engine.invoice_item_repository
-    assert_equal 1, inv.find_all_by_invoice_id("1").count
+    assert_equal 1, inv.find_all_by_invoice_id(1).count
   end
 
   def test_find_all_invoice_items_by_quantity

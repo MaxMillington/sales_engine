@@ -25,7 +25,7 @@ class InvoiceItemRepository
   end
 
   def create(data, invoice_id)
-    data[:items].map do |item|
+    result = data[:items].map do |item|
       new_invoice_item = InvoiceItem.new({"id" => next_id,
                                          "item_id" => item.id,
                                          "invoice_id" => invoice_id,
@@ -34,7 +34,9 @@ class InvoiceItemRepository
                                          "created_at" => item.created_at,
                                          "updated_at" => item.updated_at},
                                          self)
-      invoice_items << new_invoice_item
+      @invoice_items << new_invoice_item
+      # new_invoice_item
+      # require 'pry'; binding.pry
     end
   end
 
@@ -60,7 +62,7 @@ class InvoiceItemRepository
   end
 
   def find_by_invoice_id(invoice_id)
-    @invoice_items.find { |invoice_item| invoice_item.invoice_id == "#{invoice_id}" }
+    @invoice_items.find { |invoice_item| invoice_item.invoice_id == invoice_id }
   end
 
   def find_by_quantity(quantity)
@@ -88,7 +90,7 @@ class InvoiceItemRepository
   end
 
   def find_all_by_invoice_id(invoice_id)
-    @invoice_items.find_all { |invoice_item| invoice_item.invoice_id == "#{invoice_id}" }
+    @invoice_items.find_all { |invoice_item| invoice_item.invoice_id == invoice_id }
   end
 
   def find_all_by_quantity(quantity)

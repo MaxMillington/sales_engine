@@ -54,4 +54,8 @@ class Invoice
     total ? total : 0
   end
 
+  def charge(data)
+    repository.charge(data)
+  end
+
 end
